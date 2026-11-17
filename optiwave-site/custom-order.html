@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кастомне виготовлення хвилеводів (ТЗ та CAD) — OptiWave Systems (User Story 4)</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Глобальний Хедер -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo"><span>⚡</span> OptiWave Systems</a>
+      <button class="menu-toggle" aria-label="Меню">&#9776;</button>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="catalog.html">Каталог хвилеводів</a></li>
+          <li><a href="compare.html">AR/VR Гарнітури</a></li>
+          <li><a href="custom-order.html" class="active">Кастомне замовлення</a></li>
+          <li><a href="compare.html">Порівняння</a></li>
+          <li><a href="product.html">Datasheets</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a href="checkout.html" class="cart-indicator">🛒 Кошик (2)</a>
+        <button class="b2b-nav-btn">B2B Кабінет</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="breadcrumbs">
+      <a href="index.html">Головна</a> / <a href="catalog.html">R&D Послуги</a> / <span>Індивідуальне виготовлення оптичних хвилеводів</span>
+    </div>
+
+    <h1>Індивідуальне проєктування та розрахунок дифракційних хвилеводів</h1>
+    <p>Виготовлення дослідних зразків для AR/VR пристроїв за вашими технічними вимогами та CAD-кресленнями від 1 штуки.</p>
+
+    <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; margin-bottom: 48px;" class="custom-grid">
+      <!-- ЛІВА КОЛОНКА: АНКЕТА ТЗ ТА ЗАВАНТАЖЕННЯ CAD (USER STORY 4 CORE) -->
+      <div>
+        <form id="custom-order-form" class="card">
+          <h3 style="margin-bottom: 16px;">Технічні параметри оптичного компонента (User Story 4)</h3>
+
+          <!-- ПОЛЕ 1: ТИП ХВИЛЕВОДУ (US 4 AC 1) -->
+          <div class="form-group">
+            <label class="form-label">1. Тип дифракційної структури / архітектура хвилеводу *:</label>
+            <div class="flex gap-md" style="flex-wrap: wrap;">
+              <label class="btn btn-outline btn-sm" style="background: var(--cyan-tint); border-color: var(--cyan-neon);">
+                <input type="radio" name="wave-type" checked> Поверхневий рельєф (SRG)
+              </label>
+              <label class="btn btn-outline btn-sm">
+                <input type="radio" name="wave-type"> Голографічний об'ємний (VHG)
+              </label>
+              <label class="btn btn-outline btn-sm">
+                <input type="radio" name="wave-type"> Поляризаційний / Геометричний
+              </label>
+            </div>
+          </div>
+
+          <!-- ПОЛЕ 2: ДІАПАЗОН ДОВЖИН ХВИЛЬ (US 4 AC 1) -->
+          <div class="form-group">
+            <label class="form-label">2. Робочий діапазон довжин хвиль (Wavelength) *:</label>
+            <div class="flex gap-md" style="flex-wrap: wrap;">
+              <label class="btn btn-outline btn-sm" style="background: var(--cyan-tint); border-color: var(--cyan-neon);">
+                <input type="radio" name="spectrum" checked> RGB Повний спектр (450, 520, 635 nm)
+              </label>
+              <label class="btn btn-outline btn-sm">
+                <input type="radio" name="spectrum"> Монохром зелений (520 nm)
+              </label>
+              <label class="btn btn-outline btn-sm">
+                <input type="radio" name="spectrum"> Інфрачервоний NIR (850 nm)
+              </label>
+            </div>
+          </div>
+
+          <!-- ПОЛЕ 3: КУТ ОГЛЯДУ ТА ПІДКЛАДКА -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+            <div class="form-group">
+              <label class="form-label">Бажаний кут огляду (Target FOV):</label>
+              <input type="text" class="form-control" value="52° Diagonal">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Матеріал та товщина підкладки:</label>
+              <select class="form-select">
+                <option>Плавлений кварц (Fused Silica 1.2 мм)</option>
+                <option>Монокристалічний кремній (Si 1.5 мм)</option>
+                <option>Оптичний полімер (Resin 1.0 мм)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- ПОЛЕ 4: ТИРАЖ ПАРТІЇ (US 4 AC 1) -->
+          <div class="form-group">
+            <label class="form-label">3. Необхідний тираж партії зразків (Quantity) *:</label>
+            <div class="flex gap-md" style="flex-wrap: wrap;">
+              <label class="btn btn-outline btn-sm">
+                <input type="radio" name="qty"> 1 — 2 шт (R&D Тестовий зразок)
+              </label>
+              <label class="btn btn-outline btn-sm" style="background: var(--cyan-tint); border-color: var(--cyan-neon);">
+                <input type="radio" name="qty" checked> 5 — 10 шт (Пілотна партія DevKit)
+              </label>
+              <label class="btn btn-outline btn-sm">
+                <input type="radio" name="qty"> 50+ шт (Серія)
+              </label>
+            </div>
+          </div>
+
+          <!-- ПОЛЕ 5: ЗАВАНТАЖЕННЯ CAD-ФАЙЛІВ (US 4 ACCEPTANCE CRITERIA 2: .step, .dxf, .pdf до 25 МБ) -->
+          <div class="form-group">
+            <label class="form-label">4. Завантаження креслень та CAD-моделей (User Story 4 / AC 2) *:</label>
+            <div id="cad-dropzone" class="dropzone" style="cursor:pointer;" onclick="document.getElementById('cad-file-input').click();">
+              <div class="dropzone-icon">📁</div>
+              <div class="dropzone-info" style="font-weight: 700; color: var(--navy-primary); margin-bottom: 4px;">Перетягніть CAD-файли сюди або натисніть для огляду</div>
+              <div style="font-size: 12px; color: var(--blue-tech);">Підтримуються формати: <strong>.step, .dxf, .pdf</strong> (макс. розмір: до 25 МБ)</div>
+              <input type="file" id="cad-file-input" accept=".step,.stp,.dxf,.pdf" style="display:none;">
+            </div>
+
+            <!-- Preview прикріпленого файлу (AC 2) -->
+            <div id="file-preview" style="background: var(--success-bg); border: 1px solid #A7F3D0; border-radius: var(--radius-sm); padding: 10px 14px; margin-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
+              <span style="font-weight: 600; color: var(--success);">✓ Прикріплено: optical_waveguide_housing_v3.step (14.2 МБ / CAD 3D)</span>
+              <a href="#" style="color: var(--danger); font-weight: 700;" onclick="document.getElementById('cad-file-input').value=''; document.getElementById('file-preview').style.display='none'; return false;">✕ Видалити</a>
+            </div>
+          </div>
+
+          <!-- ПОЛЕ 6: КОНТАКТИ РОЗРОБНИКА -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+            <div class="form-group">
+              <label class="form-label">ПІБ контактного інженера *:</label>
+              <input type="text" class="form-control" value="Ковальов Андрій Олександрович" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Компанія / Лабораторія *:</label>
+              <input type="text" class="form-control" value='ТОВ "ОптікЛаб Текнолоджіз"' required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">E-mail для розрахунку та комерційної пропозиції * (US 4 AC 3 target):</label>
+            <input type="email" class="form-control" value="engineer@opticlab.ua" required style="background: #F0F9FF;">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Додаткові технічні вимоги до решітки:</label>
+            <textarea class="form-textarea">Необхідно оптимізувати однорідність яскравості у верхніх кутах поля зору при товщині не більше 1.2 мм. Цільова яскравість проєкції: від 1500 nits.</textarea>
+          </div>
+
+          <!-- CTA КНОПКА ПОДАННЯ ЗАЯВКИ (US 4) -->
+          <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 15px; padding: 14px;">
+            Надіслати заявку на інженерний розрахунок →
+          </button>
+        </form>
+      </div>
+
+      <!-- ПРАВА КОЛОНКА: ЕТАПИ ТА NDA -->
+      <div>
+        <div class="card" style="margin-bottom: 24px;">
+          <h3 style="margin-bottom: 16px;">Етапи виконання кастомного замовлення:</h3>
+          <ol style="padding-left: 20px; font-size: 13px; line-height: 1.8; color: var(--text-body);">
+            <li><strong>Аналіз ТЗ та CAD-файлу</strong> — перевірка геометрії решіток інженерами OptiWave (до 24 годин).</li>
+            <li><strong>Оптичне моделювання</strong> — хвильовий розрахунок методом RCWA та симуляція ефективності.</li>
+            <li><strong>Узгодження специфікації</strong> — затвердження кошторису та графіка виробництва.</li>
+            <li><strong>Нанолітографія в чистій кімнаті</strong> — виготовлення партії зразків (від 7 робочих днів).</li>
+            <li><strong>Метрологічний контроль</strong> — спектроскопія та видача індивідуального паспорта якості.</li>
+          </ol>
+        </div>
+
+        <div style="background: var(--navy-primary); color: #fff; padding: 24px; border-radius: var(--radius-md); border: 1px solid rgba(0, 216, 246, 0.3);">
+          <div style="font-size: 11px; font-weight: 700; color: var(--cyan-neon); margin-bottom: 6px;">🔒 ЗАХИСТ ІНТЕЛЕКТУАЛЬНОЇ ВЛАСНОСТІ</div>
+          <h4 style="color: #fff; margin-bottom: 8px;">Конфіденційність ваших креслень</h4>
+          <p style="font-size: 12px; color: #94A3B8; margin-bottom: 0;">
+            Перед завантаженням та аналізом файлів ми підписуємо двосторонній договір про нерозголошення (NDA).
+            Усі права на розроблені дизайни решіток залишаються виключною власністю замовника.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- БЛОК СПОВІЩЕННЯ ПРО СТВОРЕННЯ ЗАЯВКИ (US 4 ACCEPTANCE CRITERIA 3 DEMO) -->
+    <div id="custom-success-box" style="display: none; background: var(--navy-primary); color: #fff; padding: 32px; border-radius: var(--radius-lg); margin-bottom: 48px; border: 1px solid rgba(0, 216, 246, 0.4);">
+      <span class="badge badge-cyan" style="margin-bottom: 8px;">USER STORY 4 ACCEPTANCE CRITERIA 3</span>
+      <h2 style="color: #fff; margin-bottom: 12px;">✓ Заявку на інженерний розрахунок № CR-2026-9041 успішно прийнято!</h2>
+      <p style="color: #CBD5E1; font-size: 14px; margin-bottom: 16px;">
+        Офіційне сповіщення та копію технічної специфікації надіслано на вказану пошту: <strong>engineer@opticlab.ua</strong>.<br>
+        Прикріплений CAD-файл: <strong>optical_waveguide_housing_v3.step (14.2 МБ)</strong> передано інженеру оптичного відділу.<br>
+        Очікуваний термін надання попереднього комерційного розрахунку: <strong>протягом 24 годин</strong>.
+      </p>
+      <button class="btn btn-primary btn-sm" onclick="alert('Статус заявки № CR-2026-9041: Передано на розрахунок оптичної решітки інженеру');">
+        Переглянути статус заявки ➔
+      </button>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <div>© 2026 OptiWave Systems. Лабораторна робота № 3: Реалізація User Story 4 (Кастомне ТЗ та CAD). Студент Ковальов А. О.</div>
+      <div>HTML5 • File Upload Support • B2B Specification</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

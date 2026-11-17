@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Оформлення замовлення (B2B Checkout) — OptiWave Systems (User Story 3)</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Глобальний Хедер -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo"><span>⚡</span> OptiWave Systems</a>
+      <button class="menu-toggle" aria-label="Меню">&#9776;</button>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="catalog.html">Каталог хвилеводів</a></li>
+          <li><a href="compare.html">AR/VR Гарнітури</a></li>
+          <li><a href="custom-order.html">Кастомне замовлення</a></li>
+          <li><a href="compare.html">Порівняння</a></li>
+          <li><a href="product.html">Datasheets</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a href="checkout.html" class="cart-indicator" style="background: var(--cyan-neon); color: var(--navy-dark);">🛒 Кошик (2)</a>
+        <button class="b2b-nav-btn">B2B Кабінет</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="breadcrumbs">
+      <a href="index.html">Головна</a> / <a href="catalog.html">Кошик</a> / <span>Оформлення замовлення (B2B Checkout)</span>
+    </div>
+
+    <h1>Оформлення замовлення та вибір розрахунку</h1>
+    <p>Виберіть тип платника: фізична особа для онлайн-оплати або юридична особа для формування інвойсу.</p>
+
+    <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; margin-bottom: 48px;" class="checkout-grid">
+      <!-- ЛІВА КОЛОНКА: ФОРМА ТА B2B ПЕРЕМИКАЧ (USER STORY 3 CORE) -->
+      <div>
+        <div class="card" style="margin-bottom: 24px;">
+          <h3 style="margin-bottom: 16px;">1. Тип платника та режим замовлення (User Story 3)</h3>
+
+          <!-- ПЕРЕМИКАЧ B2C / B2B (US 3 ACCEPTANCE CRITERIA 1) -->
+          <div style="display: flex; gap: 12px; margin-bottom: 20px;">
+            <label class="btn btn-outline" style="flex: 1; cursor: pointer;">
+              <input type="radio" name="customer-type" id="type-b2c" style="margin-right: 8px;">
+              Фізична особа (Картка)
+            </label>
+            <label class="btn btn-outline" style="flex: 1; cursor: pointer; background: var(--cyan-tint); border-color: var(--cyan-neon);">
+              <input type="radio" name="customer-type" id="type-b2b" checked style="margin-right: 8px;">
+              <strong>Юридична особа / ФОП (Інвойс)</strong>
+            </label>
+          </div>
+
+          <!-- ОБОВ'ЯЗКОВІ ПОЛЯ ДЛЯ ЮРИДИЧНОЇ ОСОБИ (US 3 ACCEPTANCE CRITERIA 2) -->
+          <div id="b2b-company-fields" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group" style="grid-column: span 2;">
+              <label class="form-label">Повна назва підприємства / організації * (US 3 AC 2):</label>
+              <input type="text" id="company-name" name="company" class="form-control" value='ТОВ "ОптікЛаб Текнолоджіз"' data-b2b-required required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Код ЄДРПОУ / Tax ID * (US 3 AC 2):</label>
+              <input type="text" id="edrpou" name="edrpou" class="form-control" value="38492015" data-b2b-required required style="font-weight: 700; color: var(--blue-tech);">
+            </div>
+            <div class="form-group">
+              <label class="form-label">ІПН платника ПДВ:</label>
+              <input type="text" class="form-control" value="384920126589">
+            </div>
+            <div class="form-group" style="grid-column: span 2;">
+              <label class="form-label">Юридична адреса підприємства * (US 3 AC 2):</label>
+              <input type="text" class="form-control" value="03056, м. Київ, просп. Берестейський, 37" data-b2b-required required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Представник (ПІБ):</label>
+              <input type="text" class="form-control" value="Ковальов Андрій Олександрович" data-b2b-required required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Контактний телефон:</label>
+              <input type="tel" id="contact-phone" class="form-control" value="+380 (50) 123-45-67" data-b2b-required required>
+            </div>
+            <div class="form-group" style="grid-column: span 2;">
+              <label class="form-label">E-mail для рахунку-фактури та актів * (US 3 AC 3 target):</label>
+              <input type="email" id="contact-email" class="form-control" value="billing@opticlab.ua" data-b2b-required required style="background: #F0F9FF; border-color: var(--blue-tech); font-weight: 600;">
+            </div>
+          </div>
+        </div>
+
+        <!-- Спосіб оплати -->
+        <div class="card">
+          <h3 style="margin-bottom: 16px;">2. Спосіб безготівкового розрахунку</h3>
+          <div style="background: var(--navy-primary); color: #fff; padding: 20px; border-radius: var(--radius-sm); border: 1px solid rgba(0, 216, 246, 0.4);">
+            <div style="font-size: 14px; font-weight: 700; color: var(--cyan-neon); margin-bottom: 6px;">
+              ◉ Безготівковий розрахунок за рахунком-фактурою (Інвойс з ПДВ 20%)
+            </div>
+            <p style="font-size: 12px; color: #CBD5E1; margin-bottom: 8px;">
+              Після підтвердження замовлення система автоматично згенерує офіційний PDF-рахунок
+              і надішле його на <strong>billing@opticlab.ua</strong> протягом 1 хвилини.
+            </p>
+            <div style="font-size: 11px; color: #4ADE80;">
+              ✓ Резерв компонентів фіксується на складі на 3 банківські дні.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ПРАВА КОЛОНКА: СУМАРНИЙ ЧЕК ТА КНОПКА ГЕНЕРАЦІЇ ІНВОЙСУ -->
+      <div>
+        <div class="card" style="position: sticky; top: 95px;">
+          <h3 style="margin-bottom: 16px;">Склад замовлення (2 позиції):</h3>
+
+          <div style="padding-bottom: 12px; border-bottom: 1px solid var(--border-gray); margin-bottom: 12px;">
+            <div class="flex-between">
+              <strong>Diffractive Waveguide DW-50 (RGB)</strong>
+              <span>$2,150.00</span>
+            </div>
+            <div style="font-size: 12px; color: var(--text-muted);">5 шт × $430.00 (Оптова ціна)</div>
+          </div>
+
+          <div style="padding-bottom: 12px; border-bottom: 1px solid var(--border-gray); margin-bottom: 12px;">
+            <div class="flex-between">
+              <strong>Micro-OLED Display Module 0.71"</strong>
+              <span>$640.00</span>
+            </div>
+            <div style="font-size: 12px; color: var(--text-muted);">2 шт × $320.00</div>
+          </div>
+
+          <!-- Розрахунок сум -->
+          <div style="font-size: 13px; line-height: 1.8; margin-bottom: 16px;">
+            <div class="flex-between">
+              <span>Сума замовлення:</span>
+              <span>$2,790.00</span>
+            </div>
+            <div class="flex-between" style="color: var(--blue-tech);">
+              <span>B2B Знижка за партію (-10%):</span>
+              <span>-$215.00</span>
+            </div>
+            <div class="flex-between">
+              <span>Кур'єрська доставка:</span>
+              <span style="color: var(--success); font-weight: 600;">Безкоштовно</span>
+            </div>
+            <div class="flex-between" style="color: var(--text-muted); font-size: 11px;">
+              <span>ПДВ 20% (включено у суму):</span>
+              <span>$429.17</span>
+            </div>
+            <div class="flex-between" style="font-size: 18px; font-weight: 800; color: var(--navy-primary); border-top: 2px solid var(--border-gray); padding-top: 8px; margin-top: 8px;">
+              <span>Разом до сплати:</span>
+              <span>$2,575.00</span>
+            </div>
+            <div style="font-size: 11px; text-align: right; color: var(--text-muted);">
+              ≈ 105,575.00 грн за курсом НБУ
+            </div>
+          </div>
+
+          <!-- CTA КНОПКА ГЕНЕРАЦІЇ ІНВОЙСУ (US 3 ACCEPTANCE CRITERIA 3) -->
+          <button id="btn-submit-invoice" class="btn btn-primary" style="width: 100%; font-size: 15px; padding: 14px;">
+            📄 Згенерувати та надіслати Інвойс
+          </button>
+          <div style="font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 8px;">
+            Час генерації документа: до 1 хвилини
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- БЛОК ПІДТВЕРДЖЕННЯ ГЕНЕРАЦІЇ ІНВОЙСУ (US 3 AC 3 DEMO) -->
+    <div id="invoice-success-box" style="display: none; background: var(--navy-primary); color: #fff; padding: 32px; border-radius: var(--radius-lg); margin-bottom: 48px; border: 1px solid rgba(0, 216, 246, 0.4);">
+      <span class="badge badge-cyan" style="margin-bottom: 8px;">USER STORY 3 ACCEPTANCE CRITERIA 3</span>
+      <h2 style="color: #fff; margin-bottom: 12px;">✓ Рахунок-фактура № OW-2026-0849 успішно згенерована!</h2>
+      <p style="color: #CBD5E1; font-size: 14px; margin-bottom: 16px;">
+        Офіційний PDF-документ з печаткою та підписом надіслано на вказану адресу: <strong>billing@opticlab.ua</strong>.<br>
+        Час формування: <strong>18 секунд</strong> (норматив: до 1 хвилини). Сума замовлення: <strong>$2,575.00 (105,575 грн з ПДВ)</strong>.
+      </p>
+      <div class="flex gap-md" style="flex-wrap: wrap;">
+        <button class="btn btn-primary btn-sm" onclick="alert('Завантаження згенерованого PDF-інвойсу № OW-2026-0849');">📥 Завантажити PDF Інвойс</button>
+        <button class="btn btn-secondary btn-sm" onclick="window.print();">🖨 Друк квитанції</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <div>© 2026 OptiWave Systems. Лабораторна робота № 3: Реалізація User Story 3 (B2B Checkout та інвойс). Студент Ковальов А. О.</div>
+      <div>HTML5 • Form Validation • B2B Requisites</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
